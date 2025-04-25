@@ -18,7 +18,17 @@ public class ButtonController : MonoBehaviour
         
     }
 
-    void OnClick() {
+    public void OnPointerClick() {
         callback();
+    }
+
+    public void OnPointerEnter() {
+        Material glowMaterial = gameObject.GetComponent<Renderer>().materials[1];
+        glowMaterial.SetFloat("_Scale", 1.05f);
+    }
+
+    public void OnPointerExit() {
+        Material glowMaterial = gameObject.GetComponent<Renderer>().materials[1];
+        glowMaterial.SetFloat("_Scale", 0f);
     }
 }

@@ -166,7 +166,7 @@ GameObject:
   - component: {fileID: 171780944}
   - component: {fileID: 171780943}
   - component: {fileID: 171780947}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Salir
   m_TagString: Planet
   m_Icon: {fileID: 0}
@@ -477,7 +477,7 @@ GameObject:
   - component: {fileID: 628040538}
   - component: {fileID: 628040537}
   - component: {fileID: 628040541}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Ajustes
   m_TagString: Planet
   m_Icon: {fileID: 0}
@@ -1046,7 +1046,7 @@ GameObject:
   - component: {fileID: 894320536}
   - component: {fileID: 894320537}
   - component: {fileID: 894320538}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Iniciar
   m_TagString: Planet
   m_Icon: {fileID: 0}
@@ -1635,7 +1635,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 723926960, guid: 15fcd94adb15b48f7bb4a80622ae7046, type: 3}
       propertyPath: ReticleInteractionLayerMask.m_Bits
-      value: 0
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 723926960, guid: 15fcd94adb15b48f7bb4a80622ae7046, type: 3}
       propertyPath: RecticleInteractionLayerMask.m_Bits
