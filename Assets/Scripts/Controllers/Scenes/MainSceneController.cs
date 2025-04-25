@@ -7,11 +7,11 @@ public class MainSceneController : MonoBehaviour
     public ButtonController inicio, salir, ajustes;
 
     void startDemo () {
-        SceneController.instance.LoadScene("HelloCardboard");
+        SceneController.instance.LoadScene("DetailedViewScene");
     }
 
     void goToSettings () {
-        SceneController.instance.LoadScene("HelloCardboard");
+        SceneController.instance.LoadScene("DetailedViewScene");
     }
 
     void exitApp () {
