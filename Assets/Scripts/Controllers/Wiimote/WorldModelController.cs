@@ -14,11 +14,10 @@ public class WorldModelController : MonoBehaviour
     void Update()
     {
 
-            Vector3 rotation = receiver.rotation;
 
 
             // Apply the rotation to the object
-            transform.rotation = Quaternion.Euler(rotation.y, rotation.x, rotation.z);
+            transform.rotation = Quaternion.Euler(receiver.rotation);
     }
 
 

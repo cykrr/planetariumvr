@@ -12,13 +12,26 @@ public class AngleGrapher : MonoBehaviour
     public float angleScale = 1f;
 
     public WiimoteReceiver receiver;
-    float[] bufX, bufY, bufZ;
+    float[] bufX, bufY, bufZ, accX, accY, accZ, bufPitch, bufRoll;
+    float minX = Mathf.Infinity,
+     maxX = -Mathf.Infinity,
+     minY= Mathf.Infinity,
+     maxY = -Mathf.Infinity,
+     minZ= Mathf.Infinity,
+     maxZ = -Mathf.Infinity;
 
     private void Awake()
     {
         bufX = new float[bufferSize];
         bufY = new float[bufferSize];
         bufZ = new float[bufferSize];
+
+        accX = new float[bufferSize];
+        accY = new float[bufferSize];
+        accZ = new float[bufferSize];
+
+        bufPitch = new float[bufferSize];
+        bufRoll = new float[bufferSize];
     }
 
     private void Update()
@@ -26,9 +39,22 @@ public class AngleGrapher : MonoBehaviour
         if (receiver == null)
             return;
 
+        if (minX > receiver.rotation.x) minX = receiver.rotation.x;
+        if (minY > receiver.rotation.y) minY = receiver.rotation.y;
+        if (minZ > receiver.rotation.z) minZ = receiver.rotation.z;
+
+        if (maxX < receiver.rotation.x) maxX = receiver.rotation.x;
+        if (maxY < receiver.rotation.y) maxY = receiver.rotation.y;
+        if (maxZ < receiver.rotation.z) maxZ = receiver.rotation.z;
+
         ShiftAdd(bufX, receiver.rotation.x);
         ShiftAdd(bufY, receiver.rotation.y);
         ShiftAdd(bufZ, receiver.rotation.z);
+        ShiftAdd(accX, receiver.accel.x*10000);
+        ShiftAdd(accY, receiver.accel.y*10000);
+        ShiftAdd(accZ, receiver.accel.z*10000);
+        ShiftAdd(bufPitch, receiver.pitchRoll.x);
+        ShiftAdd(bufRoll, receiver.pitchRoll.y);
 
 
     }
@@ -42,16 +68,44 @@ public class AngleGrapher : MonoBehaviour
 
     private void OnGUI()
     {
-        DrawGraph(new Rect(10, 50, bufferSize * timeScale, 400));
+        DrawGraph(new Rect(10, 100, bufferSize * timeScale, 400));
+        DrawAccelGraph(new Rect(510, 100, bufferSize * timeScale, 400));
+        DrawAccelGraph(new Rect(510, 100, bufferSize * timeScale, 400));
+        DrawYawPitchGraph(new Rect(710, 100, bufferSize * timeScale, 400));
     }
 
     void DrawGraph(Rect rect)
     {
+        float dx = maxX - minX;
+        float dy = maxY - minY;
+        float dz = maxZ - minZ;
         GUI.BeginGroup(rect);
-        GUI.Label(rect, $"{receiver.rotation.x} {receiver.rotation.y} {receiver.rotation.z}");
+        GUI.Label(rect, $"{receiver.rotation.x:+0.00;-0.00; 0.00} {receiver.rotation.y:+0.00;-0.00; 0.00} {receiver.rotation.z:+0.00;-0.00; 0.00}");
+        GUI.Label(new Rect(20, 40, 300, 20), $"{dx:+0.00;-0.00; 0.00} {dy:+0.00;-0.00; 0.00} {dz:+0.00;-0.00; 0.00}");
         DrawLine(bufX, Color.red, 100f);
         DrawLine(bufY, Color.green, 200f);
         DrawLine(bufZ, Color.blue, 300f);
+
+        GUI.EndGroup();
+    }
+
+    void DrawYawPitchGraph(Rect rect)
+    {
+        GUI.BeginGroup(rect);
+        GUI.Label(new Rect(20, 40, 300, 20), $"{receiver.pitchRoll.x:+0.00;-0.00; 0.00} {receiver.pitchRoll.y:+0.00;-0.00; 0.00}");
+        DrawLine(bufPitch, Color.red, 100f);
+        DrawLine(bufRoll, Color.green, 200f);
+
+        GUI.EndGroup();
+    }
+
+    void DrawAccelGraph(Rect rect)
+    {
+        GUI.BeginGroup(rect);
+        GUI.Label(new Rect(20, 40, 300, 20), $"{receiver.accel.x:+0.00;-0.00; 0.00} {receiver.accel.y:+0.00;-0.00; 0.00} {receiver.accel.z:+0.00;-0.00; 0.00}");
+        DrawLine(accX, Color.red, 200f);
+        DrawLine(accY, Color.green, 300f);
+        DrawLine(accZ, Color.blue, 400f);
 
         GUI.EndGroup();
     }
