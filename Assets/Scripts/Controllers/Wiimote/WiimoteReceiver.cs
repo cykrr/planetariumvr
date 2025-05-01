@@ -82,7 +82,7 @@ public class WiimoteReceiver : MonoBehaviour
         // accel.y = _accel.y; 
         accel.y = (_accel.y - X0.y)/27f;
         accel.z = (_accel.z - X0.z)/27f + 1;//(_accel.z - X0.z)/(X1.z - X0.z);
-        accel.Normalize();
+        accel = accel.normalized;
 
         _accelFiltered = accel;//0.95f * _accelFiltered + 0.05f * accel;
 
