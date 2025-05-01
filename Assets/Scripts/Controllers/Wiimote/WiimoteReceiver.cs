@@ -31,12 +31,12 @@ public class WiimoteReceiver : MonoBehaviour
     private Vector3 gyroOffset = new Vector3(0, 0, 0);
     // private Vector3 accelOffset = new Vector3(0, 0, 0);
     private int frameCount = 0;
-    public int calibrationFrameLimit = 200;
+    public int calibrationFrameLimit = 5000;
 
     private Vector3 _gyro = new Vector3(0, 0, 0);
     private Vector3 _accel = new Vector3(0, 0, 0);
+    private Vector3 _accelFiltered = new Vector3(0, 0, 0);
     public Vector3 accel = new Vector3(0, 0, 0);
-    Vector3 ww = new Vector3(0, 0, 0);
 
     static Vector3 X1 = new Vector3(106f, 131f, 159f);
     static Vector3 X2 = new Vector3(106f, 157f, 133f);
@@ -82,19 +82,20 @@ public class WiimoteReceiver : MonoBehaviour
         // accel.y = _accel.y; 
         accel.y = (_accel.y - X0.y)/27f;
         accel.z = (_accel.z - X0.z)/27f + 1;//(_accel.z - X0.z)/(X1.z - X0.z);
-        ww += w*Time.deltaTime;
+        accel.Normalize();
 
-        pitchRoll.x = Mathf.Atan2(accel.y, Mathf.Sqrt(accel.x*accel.x + accel.y*accel.y))*Mathf.Rad2Deg; // pitch
-        pitchRoll.y = Mathf.Atan2(-accel.x, accel.z) * Mathf.Rad2Deg; // roll
+        _accelFiltered = accel;//0.95f * _accelFiltered + 0.05f * accel;
+
+        pitchRoll.x = Mathf.Atan2(_accelFiltered.y, Mathf.Sqrt(_accelFiltered.x*_accelFiltered.x + _accelFiltered.z*_accelFiltered.z) + 0.001f)*Mathf.Rad2Deg; // pitch
+        pitchRoll.y = Mathf.Atan2(-_accelFiltered.x, _accelFiltered.z+ 0.0001f) * Mathf.Rad2Deg; // roll
         // 1. Integrate gyro (Euler angles in deg)
 
         // 2. Complementary filter
-        float HPF = 0.98f;
-        float LPF = 0.02f;
         // Yaw no correction available!
-        rotation.x = HPF * ww.x + LPF * pitchRoll.x;
-        rotation.y = -ww.z * 0.7f;
-        rotation.z = HPF * ww.y * 0.7f + LPF * pitchRoll.y;
+        float alpha = 0.98f;
+        rotation.x = alpha * (rotation.x + w.x  * Time.deltaTime) + (1 - alpha) * pitchRoll.x;
+        rotation.z = alpha * (rotation.z + w.y * Time.deltaTime) + (1 - alpha) * pitchRoll.y;
+        rotation.y -= w.z * 0.7f*  Time.deltaTime; // Yaw uncorrecte
         // Pitch and roll corrections
         // rotation.y = pitch;
         // rotation.z = roll;
@@ -107,7 +108,7 @@ public class WiimoteReceiver : MonoBehaviour
         rotation.x = 0;
         rotation.y = 0;
         rotation.z = 0;
-        ww.x = 0; ww.y = 0; ww.z = 0;
+
     }
 }    
 
@@ -115,9 +116,11 @@ public class WiimoteReceiver : MonoBehaviour
     // Calibrate the sensor by finding the resting values for each axis
     private void CalibrateSensor()
     {
-        gyroOffset += _gyro / 100f;
+        gyroOffset += _gyro;
         // accelOffset += _accel / 100f;
         frameCount++;
+        if (frameCount == calibrationFrameLimit)
+            gyroOffset /= calibrationFrameLimit;
     }
 
     void OnApplicationQuit()
