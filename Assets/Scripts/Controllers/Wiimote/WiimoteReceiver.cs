@@ -43,15 +43,18 @@ public class WiimoteReceiver : MonoBehaviour
     static Vector3 X3 = new Vector3(158f, 130.5f, 134f);
 
     static Vector3 X0 = new Vector3(
+        135f, //while standing
+        137f,
+        163f
+    );
+
+    /*
+    static Vector3 X0 = new Vector3(
         132f, //while standing
         131f,
         159f
     );
-
-
-
-
-
+    */
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
