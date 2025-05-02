@@ -3,8 +3,8 @@ using UnityEngine;
 public class DragAndDropSceneController : MonoBehaviour
 {
     private GameObject cuerpoCelestePrefab;
-    private Vector3 posicionSol = new Vector3(3, 1, 5);
-    private Vector3 posicionPlanetas = new Vector3(-3, 2, 5);
+    private Vector3 posicionSol = new Vector3(0, 1, 5);
+    private Vector3 posicionPlanetas = new Vector3(-3, 2, 1.78f);
 
     private string[] planetas = new string[] {
         "Mercurio",
@@ -37,7 +37,7 @@ public class DragAndDropSceneController : MonoBehaviour
         cuerpoCelestePrefab = (GameObject)Resources.Load("Prefabs/CuerpoCeleste", typeof(GameObject));
         GameObject grupoPlanetas = new GameObject("GrupoPlanetas");
         grupoPlanetas.transform.position = posicionPlanetas;
-        grupoPlanetas.transform.Rotate(-19, -66, 0);
+        grupoPlanetas.transform.LookAt(Vector3.zero);
 
 
         GameObject sol = Instantiate(cuerpoCelestePrefab);
@@ -65,7 +65,7 @@ public class DragAndDropSceneController : MonoBehaviour
 
             // Update q and r to wrap around
             q++;
-            if (q >= 3) // 3 per row
+            if (q >= 4) // 4 per row
             {
                 q = 0;
                 r++;
