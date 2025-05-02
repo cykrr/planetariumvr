@@ -11,7 +11,7 @@ public class VistaAnilloController : MonoBehaviour
         "Venus",
         "Tierra",
         "Marte",
-        "Júpiter",
+        "JÃºpiter",
         "Saturno",
         "Urano",
         "Neptuno"
@@ -29,6 +29,7 @@ public class VistaAnilloController : MonoBehaviour
     "URP_Neptune_2k"
     };
     private float r = 3;
+
 
 
     void Start()
@@ -49,15 +50,15 @@ public class VistaAnilloController : MonoBehaviour
             mats[0] = mat;
             renderer.materials = mats;
 
-            // Crear el objeto de texto en la posición (x, z) pero con y = 2
+            // Crear el objeto de texto en la posiciï¿½n (x, z) pero con y = 2
             GameObject texto = new GameObject("Texto_" + cuerpoNames[i]);
             texto.transform.position = new Vector3(x, -0.9f, z);
 
-            // Añadir un componente TextMeshPro (o TextMesh si no usas TMP)
+            // Aï¿½adir un componente TextMeshPro (o TextMesh si no usas TMP)
             TextMeshPro textMeshPro = texto.AddComponent<TextMeshPro>();
             textMeshPro.text = cuerpoNames[i]; // Asignar el nombre del planeta
-            textMeshPro.fontSize = 2; // Ajusta el tamaño de la fuente si es necesario
-            textMeshPro.alignment = TextAlignmentOptions.Center; // Alineación centrada
+            textMeshPro.fontSize = 2; // Ajusta el tamaï¿½o de la fuente si es necesario
+            textMeshPro.alignment = TextAlignmentOptions.Center; // Alineaciï¿½n centrada
 
             // Hacer que la etiqueta mire hacia el origen (0, 0, 0)
             texto.transform.LookAt(Vector3.zero);
