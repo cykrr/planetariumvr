@@ -3,8 +3,8 @@ using UnityEngine;
 public class DragAndDropSceneController : MonoBehaviour
 {
     private GameObject cuerpoCelestePrefab;
-    private Vector3 posicionSol = new Vector3(0, 1, 5);
-    private Vector3 posicionPlanetas = new Vector3(-3, 2, 1.78f);
+    private Vector3 posicionSol = new Vector3(2, 0, 5);
+    private Vector3 posicionPlanetas = new Vector3(-3, 2, 5);
 
     private string[] planetas = new string[] {
         "Mercurio",
@@ -51,6 +51,12 @@ public class DragAndDropSceneController : MonoBehaviour
         for (int i = 0; i < planetas.Length; i++)
         {
             GameObject planeta = Instantiate(cuerpoCelestePrefab);
+            planeta.AddComponent<PlanetOrbit>();
+            PlanetOrbit orbit=  planeta.GetComponent<PlanetOrbit>();
+            orbit.sun = sol.transform;
+            orbit.a += i*0.1f;
+            orbit.b += i*0.1f;
+
             planeta.name = planetas[i];
             planeta.transform.SetParent(grupoPlanetas.transform);
 

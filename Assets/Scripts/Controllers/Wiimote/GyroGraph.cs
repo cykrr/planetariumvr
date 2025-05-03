@@ -114,11 +114,11 @@ public class AngleGrapher : MonoBehaviour
     {
         Vector2 prev = new Vector2(0, verticalOffset - buf[0] * angleScale);
 
-        Handles.color = color;
+        // Handles.color = color;
         for (int i = 1; i < buf.Length; i++)
         {
             Vector2 current = new Vector2(i * timeScale, verticalOffset - buf[i] * angleScale);
-            Handles.DrawLine(prev, current);
+            // Handles.DrawLine(prev, current);
             prev = current;
         }
     }

@@ -20,7 +20,7 @@ public class WiimoteReceiver : MonoBehaviour
     UdpClient client;
     Thread receiveThread;
 
-    ushort buttons;
+    private ushort buttons;
 
     // Gyro calibration
     private const float HPF = 0.92f;
@@ -106,13 +106,7 @@ public class WiimoteReceiver : MonoBehaviour
     }
 
     // Button "A" for quick recalibrate
-    if ((buttons & 2048) != 0)
-    {
-        rotation.x = 0;
-        rotation.y = 0;
-        rotation.z = 0;
 
-    }
 }    
 
 
@@ -156,4 +150,13 @@ public class WiimoteReceiver : MonoBehaviour
         }
     }
 
+    public bool ButtonA() {
+        return (buttons & 2048) != 0;
+    }
+
+
+    public bool ButtonB() {
+        return (buttons & 1024) != 0;
+    }
 }
+

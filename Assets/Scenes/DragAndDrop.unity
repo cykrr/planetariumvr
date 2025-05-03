@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 885573817}
   - component: {fileID: 885573816}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: Wiimote
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -167,7 +167,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78017bdb1580d6049b216a6e4527c4e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lineRenderer: {fileID: 0}
+  hitObject: {fileID: 0}
+  lastHitObject: {fileID: 0}
 --- !u!114 &885573817
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -573,6 +574,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1150003429}
   - component: {fileID: 1150003430}
+  - component: {fileID: 1150003431}
   m_Layer: 0
   m_Name: DragAndDropSceneController
   m_TagString: Untagged
@@ -607,6 +609,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e15c94abda06fcb438e0bafb4e4548bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1150003431
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1150003428}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1a1c1c1e78cf404da7704e680c751ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rayPointer: {fileID: 885573816}
+  receiver: {fileID: 987587525}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

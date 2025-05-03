@@ -1,4 +1,3 @@
-using UnityEditor.PackageManager;
 using UnityEngine;
 
 public class RayPointer : MonoBehaviour
@@ -7,6 +6,7 @@ public class RayPointer : MonoBehaviour
     private LineRenderer lineRenderer;
     float rayDistance = 10f;
 
+    public GameObject hitObject;
     public GameObject lastHitObject;
     public Ray ray;
 
@@ -30,10 +30,12 @@ public class RayPointer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        ray = new Ray(tipPosition, gameObject.transform.forward);
         tipPosition = gameObject.transform.position +
             gameObject.transform.forward *
             (gameObject.transform.localScale.z / 2f);
+
+        ray = new Ray(tipPosition, gameObject.transform.forward);
+
         Vector3 tip = gameObject.transform.position +
          gameObject.transform.forward * (gameObject.transform.localScale.z / 2f);
 
@@ -44,6 +46,7 @@ public class RayPointer : MonoBehaviour
         {
             if (hit.collider.CompareTag("Planet"))
             {
+                hitObject = hit.collider.gameObject;
                 // De-highlight previous object if it's different
                 if (lastHitObject != null && lastHitObject != hit.collider.gameObject)
                 {
