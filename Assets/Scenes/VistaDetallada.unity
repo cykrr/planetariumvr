@@ -977,6 +977,7 @@ GameObject:
   - component: {fileID: 1803820223}
   - component: {fileID: 1803820222}
   - component: {fileID: 1803820224}
+  - component: {fileID: 1803820225}
   m_Layer: 0
   m_Name: VistaDetalladaController
   m_TagString: Untagged
@@ -1028,6 +1029,20 @@ MonoBehaviour:
   rotationAngle: {x: 0, y: 0, z: 0}
   calibrationFrameLimit: 5000
   accel: {x: 0, y: 0, z: 0}
+--- !u!114 &1803820225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1803820221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 910451c19195b5c448c6b0db6a4a6781, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  descriptionText: {fileID: 1282780576}
+  modelRenderer: {fileID: 650164791}
 --- !u!1 &1923383046
 GameObject:
   m_ObjectHideFlags: 0
@@ -1067,6 +1082,6 @@ SceneRoots:
   - {fileID: 1001568035}
   - {fileID: 434460143}
   - {fileID: 714301510}
-  - {fileID: 1109562634}
   - {fileID: 1803820223}
+  - {fileID: 1109562634}
   - {fileID: 1923383047}
