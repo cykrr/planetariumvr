@@ -29,7 +29,7 @@ public class RaycastHighlight : MonoBehaviour
                         ButtonController clickable = lastHitObject.GetComponent<ButtonController>();
                         if (clickable != null)
                         {
-                            clickable.callback();
+                            // clickable.callback();
                         }
                     }
 

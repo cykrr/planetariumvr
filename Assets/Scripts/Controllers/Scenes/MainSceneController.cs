@@ -4,30 +4,25 @@ using UnityEngine.UI;
 public class MainSceneController : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    public ButtonController inicio, salir;
-    public Button vistaInformativa;
-
-    void startDemo () {
-        SceneController.instance.LoadScene("DetailedViewScene");
-    }
-
-    void goToSettings () {
-        SceneController.instance.LoadScene("DetailedViewScene");
-    }
-
-    void exitApp () {
-        Application.Quit();
-    }
+    public ButtonController inicio, informacion, salir;
+    public RayPointer rayPointer;
 
 
     void Start()
     {
-        inicio.callback = startDemo;
-        salir.callback = exitApp;
+        inicio.SetCallback(() =>
+        {
+            SceneController.instance.LoadScene("DragAndDrop");
+        });
 
-        vistaInformativa.onClick.AddListener(() =>
+        informacion.SetCallback(() =>
         {
             SceneController.instance.LoadScene("VistaAnillo");
+        });
+
+        salir.SetCallback(() =>
+        {
+            Application.Quit();
         });
     }
 }

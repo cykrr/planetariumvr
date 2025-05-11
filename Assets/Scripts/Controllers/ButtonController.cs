@@ -1,25 +1,13 @@
-using System;
-using Unity.Burst;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.Events;
 
 public class ButtonController : MonoBehaviour
 {
-    public delegate void WhateverType();
-    public WhateverType callback;
+    public UnityAction callback = (() => { });
 
-    void Start()
+    public void SetCallback(UnityAction callback)
     {
-        
-    }
-
-    void Update()
-    {
-        
-    }
-
-    public void OnPointerClick() {
-        callback();
+        this.callback = callback;
     }
 
     public void OnPointerEnter() {

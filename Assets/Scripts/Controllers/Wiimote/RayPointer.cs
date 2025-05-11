@@ -55,7 +55,7 @@ public class RayPointer : MonoBehaviour
 
                 lastHitObject = hit.collider.gameObject;
                 end = hit.point;
-                if (Input.GetMouseButton(0))
+                if (WiimoteReceiver.instance.ButtonAClick())
                 {
                     ButtonController clickable = lastHitObject.GetComponent<ButtonController>();
                     if (clickable != null)

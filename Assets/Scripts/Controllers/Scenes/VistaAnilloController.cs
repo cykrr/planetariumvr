@@ -63,6 +63,13 @@ public class VistaAnilloController : MonoBehaviour
             // Hacer que la etiqueta mire hacia el origen (0, 0, 0)
             texto.transform.LookAt(Vector3.zero);
             texto.transform.Rotate(0, 180, 0);
+
+            // Interacción con control
+            ButtonController buttonController = cuerpo.GetComponent<ButtonController>();
+            buttonController.SetCallback(() =>
+            {
+                SceneController.instance.LoadScene("VistaDetallada");
+            });
         }
     }
 }

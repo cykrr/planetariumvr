@@ -5,18 +5,18 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/SampleScene.unity
-    guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 1
     path: Assets/Scenes/Main Screen.unity
     guid: 16901979d6d9a344fa4a9ca5cf84b843
-  - enabled: 0
-    path: Assets/Samples/Google Cardboard XR Plugin for Unity/1.28.0/Hello Cardboard/Scenes/HelloCardboard.unity
-    guid: 03c48c5e809944fa4afcae9973709f26
   - enabled: 1
-    path: Assets/Scenes/DetailedViewScene.unity
+    path: Assets/Scenes/VistaDetallada.unity
     guid: c2aeb3d7ee378b64d8104c689dd707da
+  - enabled: 1
+    path: Assets/Scenes/VistaAnillo.unity
+    guid: 7ae95f0da8883154985821d363034009
+  - enabled: 1
+    path: Assets/Scenes/DragAndDrop.unity
+    guid: 7db23c3e2d1c83143980f7ffcaa69d91
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 9f1961a517124624e9d4e8f21be917cd, type: 2}

@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Sockets;
@@ -56,6 +57,26 @@ public class WiimoteReceiver : MonoBehaviour
     );
     */
 
+    private bool isPressedA = false;
+    private bool cooldownA = false;
+    private bool isPressedB = false;
+    private bool cooldownB = false;
+
+
+    public static WiimoteReceiver instance;
+    private void Awake()
+    {
+        if (!instance)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -66,49 +87,47 @@ public class WiimoteReceiver : MonoBehaviour
     }
 
     void Update()
-{
-    if (frameCount < calibrationFrameLimit)
     {
-        CalibrateSensor();
-        rotation = Vector3.zero;
+        if (frameCount < calibrationFrameLimit)
+        {
+            CalibrateSensor();
+            rotation = Vector3.zero;
+        }
+        else
+        {
+            Vector3 w = _gyro - gyroOffset;
+            w *= 595/8192f;
+            // w.x -= 5.5f;
+            // w.y -= 5.5f;
+            // w.z -= 5.5f;
+
+            accel.x = (_accel.x -X0.x) / 26f; //min + max /2
+            // accel.x = (_accel.x - X0.x)/(X3.x - X0.x);
+            // accel.y = _accel.y; 
+            accel.y = (_accel.y - X0.y)/27f;
+            accel.z = (_accel.z - X0.z)/27f + 1;//(_accel.z - X0.z)/(X1.z - X0.z);
+            accel = accel.normalized;
+
+            _accelFiltered = accel;//0.95f * _accelFiltered + 0.05f * accel;
+
+            pitchRoll.x = Mathf.Atan2(_accelFiltered.y, Mathf.Sqrt(_accelFiltered.x*_accelFiltered.x + _accelFiltered.z*_accelFiltered.z) + 0.001f)*Mathf.Rad2Deg; // pitch
+            pitchRoll.y = Mathf.Atan2(-_accelFiltered.x, _accelFiltered.z+ 0.0001f) * Mathf.Rad2Deg; // roll
+            // 1. Integrate gyro (Euler angles in deg)
+
+            // 2. Complementary filter
+            // Yaw no correction available!
+            float alpha = 0.98f;
+            rotation.x = alpha * (rotation.x + w.x  * Time.deltaTime) + (1 - alpha) * pitchRoll.x;
+            rotation.z = alpha * (rotation.z + w.y * Time.deltaTime) + (1 - alpha) * pitchRoll.y;
+            rotation.y -= w.z * 0.7f*  Time.deltaTime; // Yaw uncorrecte
+            // Pitch and roll corrections
+            // rotation.y = pitch;
+            // rotation.z = roll;
+            // rotation = w;
+        }
+
+
     }
-    else
-    {
-        Vector3 w = _gyro - gyroOffset;
-        w *= 595/8192f;
-        // w.x -= 5.5f;
-        // w.y -= 5.5f;
-        // w.z -= 5.5f;
-
-        accel.x = (_accel.x -X0.x) / 26f; //min + max /2
-        // accel.x = (_accel.x - X0.x)/(X3.x - X0.x);
-        // accel.y = _accel.y; 
-        accel.y = (_accel.y - X0.y)/27f;
-        accel.z = (_accel.z - X0.z)/27f + 1;//(_accel.z - X0.z)/(X1.z - X0.z);
-        accel = accel.normalized;
-
-        _accelFiltered = accel;//0.95f * _accelFiltered + 0.05f * accel;
-
-        pitchRoll.x = Mathf.Atan2(_accelFiltered.y, Mathf.Sqrt(_accelFiltered.x*_accelFiltered.x + _accelFiltered.z*_accelFiltered.z) + 0.001f)*Mathf.Rad2Deg; // pitch
-        pitchRoll.y = Mathf.Atan2(-_accelFiltered.x, _accelFiltered.z+ 0.0001f) * Mathf.Rad2Deg; // roll
-        // 1. Integrate gyro (Euler angles in deg)
-
-        // 2. Complementary filter
-        // Yaw no correction available!
-        float alpha = 0.98f;
-        rotation.x = alpha * (rotation.x + w.x  * Time.deltaTime) + (1 - alpha) * pitchRoll.x;
-        rotation.z = alpha * (rotation.z + w.y * Time.deltaTime) + (1 - alpha) * pitchRoll.y;
-        rotation.y -= w.z * 0.7f*  Time.deltaTime; // Yaw uncorrecte
-        // Pitch and roll corrections
-        // rotation.y = pitch;
-        // rotation.z = roll;
-        // rotation = w;
-    }
-
-    // Button "A" for quick recalibrate
-
-}    
-
 
     // Calibrate the sensor by finding the resting values for each axis
     private void CalibrateSensor()
@@ -157,6 +176,56 @@ public class WiimoteReceiver : MonoBehaviour
 
     public bool ButtonB() {
         return (buttons & 1024) != 0;
+    }
+
+    public bool ButtonAClick()
+    {
+        if (ButtonA())
+        {
+            if (!cooldownA && !isPressedA)
+            {
+                cooldownA = true;
+                isPressedA = true;
+                StartCoroutine(ResetIsPressedA());
+                return true;
+            }
+        } 
+        else
+        {
+            isPressedA = false;
+        }
+        return false;
+    }
+
+    public bool ButtonBClick()
+    {
+        if (ButtonB())
+        {
+            if (!cooldownB && !isPressedB)
+            {
+                cooldownB = true;
+                isPressedB = true;
+                StartCoroutine(ResetIsPressedB());
+                return true;
+            }
+        }
+        else
+        {
+            isPressedB = false;
+        }
+        return false;
+    }
+
+    IEnumerator ResetIsPressedA()
+    {
+        yield return new WaitForSeconds(0.5f);
+        cooldownA = false;
+    }
+
+    IEnumerator ResetIsPressedB()
+    {
+        yield return new WaitForSeconds(0.5f);
+        cooldownB = false;
     }
 }
 

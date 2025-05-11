@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &7847662453321269859
+--- !u!1 &1863697526235941162
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,12 +8,13 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1517110803902159012}
-  - component: {fileID: 6359867969476508361}
-  - component: {fileID: 1738379183033530103}
-  - component: {fileID: 6302977831555308197}
-  - component: {fileID: 1317593280832013995}
-  - component: {fileID: -8651044547616383589}
+  - component: {fileID: 1241550958197728603}
+  - component: {fileID: 5277735527371509867}
+  - component: {fileID: 1841111613452258838}
+  - component: {fileID: 4966868048200957842}
+  - component: {fileID: 7294022984292231757}
+  - component: {fileID: 7557975401588202996}
+  - component: {fileID: 5855860581059177931}
   m_Layer: 3
   m_Name: CuerpoCeleste
   m_TagString: Planet
@@ -21,13 +22,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1517110803902159012
+--- !u!4 &1241550958197728603
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7847662453321269859}
+  m_GameObject: {fileID: 1863697526235941162}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 3}
@@ -36,21 +37,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &6359867969476508361
+--- !u!33 &5277735527371509867
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7847662453321269859}
+  m_GameObject: {fileID: 1863697526235941162}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &1738379183033530103
+--- !u!23 &1841111613452258838
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7847662453321269859}
+  m_GameObject: {fileID: 1863697526235941162}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -90,13 +91,13 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &6302977831555308197
+--- !u!135 &4966868048200957842
 SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7847662453321269859}
+  m_GameObject: {fileID: 1863697526235941162}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -111,25 +112,25 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.56
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1317593280832013995
+--- !u!114 &7294022984292231757
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7847662453321269859}
+  m_GameObject: {fileID: 1863697526235941162}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 72378e7562bc5cf41b628598b68d9259, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!54 &-8651044547616383589
+--- !u!54 &7557975401588202996
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7847662453321269859}
+  m_GameObject: {fileID: 1863697526235941162}
   serializedVersion: 4
   m_Mass: 1
   m_Drag: 0
@@ -150,3 +151,15 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &5855860581059177931
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1863697526235941162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b4aafad4d36f784dbb7905cf79e4d13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
