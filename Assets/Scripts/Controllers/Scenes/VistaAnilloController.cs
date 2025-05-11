@@ -8,7 +8,6 @@ public class VistaAnilloController : MonoBehaviour
     private float r = 3;
 
 
-
     void Start()
     {
         List<CuerpoCeleste> cuerposCelestes = AppController.instance.GetCuerposCelestes();
@@ -21,6 +20,7 @@ public class VistaAnilloController : MonoBehaviour
 
             GameObject cuerpo = Instantiate(cuerpoCelestePrefab);
             cuerpo.transform.position = new Vector3(x, 0, z);
+            cuerpo.tag = "Interactable";
 
             // Cargar modelo
             Material mat = Resources.Load<Material>("Materials/" + cuerposCelestes[i].modelo);

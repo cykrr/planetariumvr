@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 5855860581059177931}
   m_Layer: 3
   m_Name: CuerpoCeleste
-  m_TagString: Planet
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

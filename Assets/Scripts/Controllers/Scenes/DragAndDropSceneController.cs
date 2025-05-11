@@ -18,17 +18,15 @@ public class DragAndDropSceneController : MonoBehaviour
     };
 
     private string[] texPlanetas = new string[] {
-    "URP_Mercury_2k",
-    "URP_Venus_2k",
-    "URP_Earth_2k",
-    "URP_Mars_2k",
-    "URP_Jupiter_2k",
-    "URP_Saturn_2k",
-    "URP_Uranus_2k",
-    "URP_Neptune_2k"
+        "URP_Mercury_2k",
+        "URP_Venus_2k",
+        "URP_Earth_2k",
+        "URP_Mars_2k",
+        "URP_Jupiter_2k",
+        "URP_Saturn_2k",
+        "URP_Uranus_2k",
+        "URP_Neptune_2k"
     };
-
-    private string texSol = "Sun";
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -51,6 +49,8 @@ public class DragAndDropSceneController : MonoBehaviour
         for (int i = 0; i < planetas.Length; i++)
         {
             GameObject planeta = Instantiate(cuerpoCelestePrefab);
+            planeta.tag = "Interactable";
+
             planeta.AddComponent<PlanetOrbit>();
             PlanetOrbit orbit=  planeta.GetComponent<PlanetOrbit>();
             orbit.sun = sol.transform;

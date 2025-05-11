@@ -44,7 +44,7 @@ public class RayPointer : MonoBehaviour
 
         if (Physics.Raycast(ray, out RaycastHit hit, rayDistance))
         {
-            if (hit.collider.CompareTag("Planet"))
+            if (hit.collider.CompareTag("Interactable"))
             {
                 hitObject = hit.collider.gameObject;
                 // De-highlight previous object if it's different
