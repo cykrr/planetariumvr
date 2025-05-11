@@ -4,7 +4,7 @@
         "modelo": "Sun",
         "descripcion": "El Sol es una estrella ubicada en el centro del sistema solar. Es una esfera casi perfecta de plasma caliente, compuesta principalmente por hidrógeno y helio. Funciona como una enorme fuente de energía, generada a través de un proceso llamado fusión nuclear. En su núcleo, los átomos de hidrógeno se combinan para formar helio, liberando una enorme cantidad de energía en forma de luz y calor. Esta energía es esencial para la vida en la Tierra, ya que regula el clima, impulsa los ciclos naturales y permite la fotosíntesis en las plantas.",
         "radio": "696.340 km",
-        "masa": "1.99 × 10^30 kg",
+        "masa": "1,99 × 10^30 kg",
         "gravedad": "274 m/s²",
         "composicion": {
             "hidrógeno": "74%",
@@ -21,14 +21,14 @@
             "modelo": "URP_Mercury_2k",
             "descripcion": "Mercurio es el planeta más cercano al Sol. Es pequeño, rocoso y muy caliente durante el día, pero extremadamente frío por la noche. Tiene temperaturas extremas y casi no tiene atmósfera.",
             "radio": "2.439 km",
-            "masa": "3.30 × 10^23 kg",
-            "gravedad": "3.70 m/s²",
+            "masa": "3,30 × 10^23 kg",
+            "gravedad": "3,70 m/s²",
             "composicion": {
                 "atmósfera": "Exosfera muy delgada: oxígeno, sodio, hidrógeno, helio y potasio",
                 "superficie": "Roca silícea con cráteres y llanuras",
                 "interior": "Núcleo de hierro, manto de silicatos, corteza rocosa delgada"
             },
-            "periodoRotacion": "58.6 días",
+            "periodoRotacion": "58,6 días",
             "temperaturaMedia": "167 °C",
             "tipoPlaneta": "Rocoso",
             "cantidadLunas": 0
@@ -38,8 +38,8 @@
             "modelo": "URP_Venus_2k",
             "descripcion": "Venus es un planeta rocoso y el segundo más cercano al Sol. Tiene una atmósfera densa y cálida, compuesta principalmente de dióxido de carbono, lo que lo convierte en el planeta más caliente, con temperaturas más altas que las de Mercurio.",
             "radio": "6.052 km",
-            "masa": "4.87 × 10^24 kg",
-            "gravedad": "8.87 m/s²",
+            "masa": "4,87 × 10^24 kg",
+            "gravedad": "8,87 m/s²",
             "composicion": {
                 "atmósfera": "96.5% dióxido de carbono, 3.5% nitrógeno, trazas de ácido sulfúrico",
                 "superficie": "Planicies volcánicas y montañas, cubierta de lava solidificada",
@@ -55,8 +55,8 @@
             "modelo": "URP_Earth_2k",
             "descripcion": "La Tierra es el único planeta conocido que alberga vida. Tiene una atmósfera rica en oxígeno y nitrógeno, y una superficie cubierta de agua en más del 70%. Su campo magnético y atmósfera protegen la vida de la radiación solar.",
             "radio": "6.371 km",
-            "masa": "5.97 × 10^24 kg",
-            "gravedad": "9.81 m/s²",
+            "masa": "5,97 × 10^24 kg",
+            "gravedad": "9,81 m/s²",
             "composicion": {
                 "atmósfera": "78% nitrógeno, 21% oxígeno, 1% otros gases",
                 "superficie": "Continentes rocosos, océanos de agua líquida",
@@ -72,8 +72,8 @@
             "modelo": "URP_Mars_2k",
             "descripcion": "Marte es conocido como el planeta rojo debido a su color característico causado por óxidos de hierro en su superficie. Aunque es frío y seco, se han encontrado indicios de agua en forma de hielo y vapor.",
             "radio": "3.390 km",
-            "masa": "6.42 × 10^23 kg",
-            "gravedad": "3.71 m/s²",
+            "masa": "6,42 × 10^23 kg",
+            "gravedad": "3,71 m/s²",
             "composicion": {
                 "atmósfera": "95.3% dióxido de carbono, 2.7% nitrógeno, trazas de argón y oxígeno",
                 "superficie": "Roca volcánica con óxidos de hierro, valles y casquetes polares",
@@ -89,8 +89,8 @@
             "modelo": "URP_Jupiter_2k",
             "descripcion": "Júpiter es el planeta más grande del sistema solar, compuesto principalmente por hidrógeno y helio. Tiene una atmósfera turbulenta con tormentas gigantes como la Gran Mancha Roja.",
             "radio": "69.911 km",
-            "masa": "1.90 × 10^27 kg",
-            "gravedad": "24.79 m/s²",
+            "masa": "1,90 × 10^27 kg",
+            "gravedad": "24,79 m/s²",
             "composicion": {
                 "atmósfera": "90% hidrógeno, 10% helio, trazas de metano y amoníaco",
                 "interior": "Hidrógeno metálico, núcleo posiblemente rocoso y denso"
@@ -105,8 +105,8 @@
             "modelo": "URP_Saturn_2k",
             "descripcion": "Saturno es el sexto planeta desde el Sol y es conocido por sus impresionantes anillos. Al igual que Júpiter, es un gigante gaseoso y está compuesto principalmente de hidrógeno y helio. Sus anillos están formados por partículas de hielo y roca.",
             "radio": "58.232 km",
-            "masa": "5.68 × 10^26 kg",
-            "gravedad": "10.44 m/s²",
+            "masa": "5,68 × 10^26 kg",
+            "gravedad": "10,44 m/s²",
             "composicion": {
                 "atmósfera": "96% hidrógeno, 3% helio, trazas de metano y vapor de agua",
                 "interior": "Núcleo rocoso rodeado de hidrógeno metálico y líquido"
@@ -121,8 +121,8 @@
             "modelo": "URP_Uranus_2k",
             "descripcion": "Urano es el séptimo planeta desde el Sol. Es un planeta muy frío, con un color azul verdoso debido al metano presente en su atmósfera. Una característica única de Urano es que gira inclinado casi completamente de lado, lo que lo distingue de los demás planetas del sistema solar.",
             "radio": "25.362 km",
-            "masa": "8.68 × 10^25 kg",
-            "gravedad": "8.69 m/s²",
+            "masa": "8,68 × 10^25 kg",
+            "gravedad": "8,69 m/s²",
             "composicion": {
                 "atmósfera": "83% hidrógeno, 15% helio, 2% metano",
                 "interior": "Hielo de agua, amoníaco y metano, con núcleo rocoso"
@@ -137,8 +137,8 @@
             "modelo": "URP_Neptune_2k",
             "descripcion": "Neptuno es el planeta más lejano del sistema solar. Tiene fuertes vientos y tormentas, y una atmósfera rica en metano que le da su color azul intenso.",
             "radio": "24.622 km",
-            "masa": "1.02 × 10^26 kg",
-            "gravedad": "11.15 m/s²",
+            "masa": "1,02 × 10^26 kg",
+            "gravedad": "11,15 m/s²",
             "composicion": {
                 "atmósfera": "80% hidrógeno, 19% helio, 1% metano",
                 "interior": "Hielo y roca, con un núcleo sólido rodeado de fluidos densos"

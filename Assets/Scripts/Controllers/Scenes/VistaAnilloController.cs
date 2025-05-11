@@ -15,9 +15,9 @@ public class VistaAnilloController : MonoBehaviour
 
         for (int i = 0; i < cuerposCelestes.Count; i++)
         {
-            float angle = 2 * Mathf.PI * i / cuerposCelestes.Count + 2 * Mathf.PI/4;
-            float x = r * Mathf.Cos(angle);
-            float z = r * Mathf.Sin(angle);
+            float angle = 2 * Mathf.PI * i / cuerposCelestes.Count + 6 * Mathf.PI/4;
+            float x = r * Mathf.Cos(-angle);
+            float z = r * Mathf.Sin(-angle);
 
             GameObject cuerpo = Instantiate(cuerpoCelestePrefab);
             cuerpo.transform.position = new Vector3(x, 0, z);
