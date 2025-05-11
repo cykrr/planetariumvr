@@ -50,6 +50,8 @@ public class VistaAnilloController : MonoBehaviour
             buttonController.SetCallback(() =>
             {
                 AppController.instance.cuerpoActual = cuerposCelestes[index];
+                AppController.instance.currentCameraRotation = Camera.main.transform.eulerAngles;
+
                 SceneController.instance.LoadScene("VistaDetallada");
             });
         }

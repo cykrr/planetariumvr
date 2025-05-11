@@ -8,6 +8,7 @@ public class AppController : MonoBehaviour
 
     private SolarSystemData data;
     private List<CuerpoCeleste> cuerposCelestes = new List<CuerpoCeleste>();
+    public Vector3 currentCameraRotation { get; set; }
 
     public CuerpoCeleste cuerpoActual { set; get; }
 
