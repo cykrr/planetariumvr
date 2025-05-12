@@ -33,7 +33,7 @@ public class DragAndDropController : MonoBehaviour
         if (Physics.Raycast(ray, out RaycastHit hit, rayDistance)){
             hitObject = hit.collider.gameObject;
             // print("hit " + hitObject.name);
-            if (receiver.ButtonA() && hitObject.tag == "Interactable") {
+            if (receiver.ButtonA() && hitObject.tag == "Interactable" && draggingObject == null) {
                 draggingObject = hitObject; 
                 dragPlane = new Plane(-transform.forward, hit.point);
                 offset = draggingObject.transform.position - hit.point;
