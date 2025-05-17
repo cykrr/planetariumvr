@@ -1,8 +1,10 @@
+using Mirror;
 using UnityEngine;
 
-public class DragAndDropSceneController : MonoBehaviour
+public class DragAndDropSceneController : NetworkBehaviour
 {
-    private GameObject cuerpoCelestePrefab;
+    public GameObject cuerpoCelestePrefab;
+
     private Vector3 posicionSol = new Vector3(2, 0, 5);
     private Vector3 posicionPlanetas = new Vector3(-3, 2, 5);
 
@@ -29,18 +31,21 @@ public class DragAndDropSceneController : MonoBehaviour
     };
 
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public override void OnStartServer()
     {
-        cuerpoCelestePrefab = (GameObject)Resources.Load("Prefabs/CuerpoCeleste", typeof(GameObject));
-        GameObject grupoPlanetas = new GameObject("GrupoPlanetas");
+        base.OnStartServer();
+
+        /*
+        GameObject grupoPlanetas = new GameObject("grupoPlanetas");
         grupoPlanetas.transform.position = posicionPlanetas;
         grupoPlanetas.transform.LookAt(Vector3.zero);
+        */
 
 
         GameObject sol = Instantiate(cuerpoCelestePrefab);
         sol.name = "Modelo Sol";
-        sol.transform.position = posicionSol;
+        sol.GetComponent<SharedObject>().position = posicionSol;
+        NetworkServer.Spawn(sol);
 
         float radius = .8f; // Adjust based on sphere size
         int q = 0;
@@ -49,25 +54,25 @@ public class DragAndDropSceneController : MonoBehaviour
         for (int i = 0; i < planetas.Length; i++)
         {
             GameObject planeta = Instantiate(cuerpoCelestePrefab);
-            planeta.tag = "Interactable";
 
             planeta.AddComponent<PlanetOrbit>();
-            PlanetOrbit orbit=  planeta.GetComponent<PlanetOrbit>();
+            PlanetOrbit orbit = planeta.GetComponent<PlanetOrbit>();
             orbit.sun = sol.transform;
             orbit.a += i*0.1f;
             orbit.b += i*0.1f;
 
             planeta.name = planetas[i];
-            planeta.transform.SetParent(grupoPlanetas.transform);
+            // planeta.transform.SetParent(grupoPlanetas.transform);
 
             // Position in hex pattern
             Vector3 hexPos = GetHexPosition(q, r, radius) + posicionPlanetas;
-            planeta.transform.position = hexPos;
 
-            // Load and assign texture
-            Material mat = Resources.Load<Material>("Materials/" + texPlanetas[i]);
-            if (mat != null)
-                planeta.GetComponent<MeshRenderer>().material = mat;
+            SharedObject sharedObject = planeta.GetComponent<SharedObject>();
+            sharedObject.position = hexPos;
+            sharedObject.materialName = texPlanetas[i];
+            sharedObject.tagName = "Interactable";
+
+            NetworkServer.Spawn(planeta);
 
             // Update q and r to wrap around
             q++;
@@ -77,16 +82,8 @@ public class DragAndDropSceneController : MonoBehaviour
                 r++;
             }
         }
-
-
-
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 
     private Vector3 GetHexPosition(int q, int r, float radius)
     {

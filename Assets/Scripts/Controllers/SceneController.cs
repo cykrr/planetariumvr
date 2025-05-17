@@ -1,3 +1,4 @@
+using Mirror;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -29,6 +30,12 @@ public class SceneController : MonoBehaviour
 
     public void PreviousScene()
     {
+        if (ConnectionManager.IsConnectedToServer())
+        {
+            ConnectionManager.Instance.Disconnect();
+            return;
+        }
+
         if (sceneHistory.Count >= 2)
         {
             sceneHistory.RemoveAt(sceneHistory.Count - 1);

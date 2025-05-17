@@ -7,13 +7,12 @@ public class DragAndDropController : MonoBehaviour
     private Vector3 offset;
     private float rayDistance = 10f;
     private Plane dragPlane;
-    GameObject draggingObject, hitObject;
+    GameObject hitObject;
+    SharedObject draggingObject;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         ray = rayPointer.ray;
-
-        
     }
 
     // Update is called once per frame
@@ -25,8 +24,7 @@ public class DragAndDropController : MonoBehaviour
         if (draggingObject != null && receiver.ButtonA()) {
             if (dragPlane.Raycast(ray, out float enter)) {
                 Vector3 hitPoint = ray.GetPoint(enter);
-                draggingObject.transform.position = hitPoint + offset;
-
+                draggingObject.CmdMoveObject(hitPoint + offset);
             }
         }
 
@@ -34,7 +32,7 @@ public class DragAndDropController : MonoBehaviour
             hitObject = hit.collider.gameObject;
             // print("hit " + hitObject.name);
             if (receiver.ButtonA() && hitObject.tag == "Interactable" && draggingObject == null) {
-                draggingObject = hitObject; 
+                draggingObject = hitObject.GetComponent<SharedObject>(); 
                 dragPlane = new Plane(-transform.forward, hit.point);
                 offset = draggingObject.transform.position - hit.point;
             }

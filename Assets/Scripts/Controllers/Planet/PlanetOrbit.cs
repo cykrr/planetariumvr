@@ -12,11 +12,11 @@ public class PlanetOrbit : MonoBehaviour
     public float orbitSpeed = 0.5f;
     private Vector3 ellipseCenter;
     private Vector3 initialOffset;
+    private SharedObject sharedObject;
 
     void Start()
     {
-        print(sun.name);
-
+        sharedObject = GetComponent<SharedObject>();
     }
 
     void Update()
@@ -28,18 +28,16 @@ public class PlanetOrbit : MonoBehaviour
             float z = b * Mathf.Sin(angle);
 
             Vector3 newPos = new Vector3(x, 0, z) + ellipseCenter;
-            transform.position = newPos;
+            sharedObject.position = newPos;
         }
     }
 
     void OnTriggerEnter(Collider collision)
     {
-        print("Colisión");
         if (collision.gameObject.name == "Modelo Sol" && !isOrbiting)
         {
-            print("Colisión2");
             // Shrink to 50%
-            transform.localScale *= 0.5f;
+            sharedObject.SetScale(transform.localScale * 0.5f);
 
             // Initialize orbit
             ellipseCenter = sun.position;

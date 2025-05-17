@@ -3,16 +3,18 @@ using UnityEngine.UI;
 
 public class MainSceneController : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     public ButtonController inicio, informacion, salir;
-    public RayPointer rayPointer;
+    public ConnectionManager connectionManager;
 
-
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         inicio.SetCallback(() =>
         {
-            SceneController.instance.LoadScene("DragAndDrop");
+            if (Application.platform == RuntimePlatform.Android)
+                connectionManager.ConnectClient();
+            else
+                connectionManager.StartHost();
         });
 
         informacion.SetCallback(() =>
