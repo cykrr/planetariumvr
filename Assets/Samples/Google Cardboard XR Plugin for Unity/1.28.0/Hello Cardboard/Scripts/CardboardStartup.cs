@@ -65,8 +65,19 @@ public class CardboardStartup : MonoBehaviour
         if (Api.HasNewDeviceParams())
         {
             Api.ReloadDeviceParams();
+            Api.UpdateScreenParams();
+            FixCameraRect(); // Arreglamos nuevamente si hay nuevos parámetros
         }
 
-        Api.UpdateScreenParams();
+        // Elimina o comenta esta línea para evitar que lo aplique en cada frame
+        // Api.UpdateScreenParams();
+    }
+
+    private void FixCameraRect()
+    {
+        if (Camera.main != null)
+        {
+            Camera.main.rect = new Rect(0f, 0f, 1f, 1f);
+        }
     }
 }
