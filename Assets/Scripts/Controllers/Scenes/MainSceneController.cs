@@ -1,5 +1,5 @@
 using UnityEngine;
-using UnityEngine.UI;
+using System;
 
 public class MainSceneController : MonoBehaviour
 {
@@ -11,10 +11,10 @@ public class MainSceneController : MonoBehaviour
     {
         inicio.SetCallback(() =>
         {
-            if (Application.platform == RuntimePlatform.Android)
-                connectionManager.ConnectClient();
-            else
+            if (Convert.ToBoolean(PlayerPrefs.GetInt("isHost", 0)))
                 connectionManager.StartHost();
+            else
+                connectionManager.ConnectClient();
         });
 
         informacion.SetCallback(() =>
@@ -26,5 +26,13 @@ public class MainSceneController : MonoBehaviour
         {
             Application.Quit();
         });
+    }
+
+    private void Update()
+    {
+        if (WiimoteReceiver.instance.ButtonHomeClick())
+        {
+            SceneController.instance.LoadScene("SettingsScene");
+        }
     }
 }

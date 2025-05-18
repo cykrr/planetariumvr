@@ -649,8 +649,8 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0
-  cuerpoCelestePrefab: {fileID: 5897770511293272741, guid: 8a4152a2cbf10974b98dde71820ff168, type: 3}
-  grupoPlanetasPrefab: {fileID: 5897770511293272741, guid: 257d8e51d21a660478fae086e67a1d11, type: 3}
+  planetaPrefab: {fileID: 5897770511293272741, guid: 8a4152a2cbf10974b98dde71820ff168, type: 3}
+  solPrefab: {fileID: 5897770511293272741, guid: 56c8ee8a9be7f5a46a3974859be92e80, type: 3}
 --- !u!114 &1150003431
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -17,6 +17,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/DragAndDrop.unity
     guid: 7db23c3e2d1c83143980f7ffcaa69d91
+  - enabled: 1
+    path: Assets/Scenes/SettingsScene.unity
+    guid: 8a27d168600d0494d82f003a245cac2c
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 9f1961a517124624e9d4e8f21be917cd, type: 2}

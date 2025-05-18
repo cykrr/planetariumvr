@@ -1,9 +1,11 @@
+using Mirror;
 using UnityEngine;
 
-public class PlanetOrbit : MonoBehaviour
+public class PlanetOrbit : NetworkBehaviour
 {
-    public Transform sun;  // Assign "Sol" in the Inspector or find it by name
-    private bool isOrbiting = false;
+    [SyncVar]
+    public bool isOrbiting = false;
+
     private float angle = 0f;
 
     // Ellipse parameters
@@ -21,7 +23,7 @@ public class PlanetOrbit : MonoBehaviour
 
     void Update()
     {
-        if (isOrbiting && sun != null)
+        if (isOrbiting && isServer)
         {
             angle += orbitSpeed * Time.deltaTime;
             float x = a * Mathf.Cos(angle);
@@ -36,6 +38,8 @@ public class PlanetOrbit : MonoBehaviour
     {
         if (collision.gameObject.name == "Modelo Sol" && !isOrbiting)
         {
+            Transform sun = collision.gameObject.transform;
+
             // Shrink to 50%
             sharedObject.SetScale(transform.localScale * 0.5f);
 

@@ -8,7 +8,7 @@ public class DragAndDropController : MonoBehaviour
     private float rayDistance = 10f;
     private Plane dragPlane;
     GameObject hitObject;
-    SharedObject draggingObject;
+    GameObject draggingObject;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -21,10 +21,11 @@ public class DragAndDropController : MonoBehaviour
         WiimoteReceiver receiver = WiimoteReceiver.instance;
         ray = rayPointer.ray;
 
-        if (draggingObject != null && receiver.ButtonA()) {
+        if (draggingObject != null && !(draggingObject.GetComponent<PlanetOrbit>().isOrbiting) && receiver.ButtonA()) {
+            print(draggingObject.GetComponent<PlanetOrbit>().isOrbiting);
             if (dragPlane.Raycast(ray, out float enter)) {
                 Vector3 hitPoint = ray.GetPoint(enter);
-                draggingObject.CmdMoveObject(hitPoint + offset);
+                draggingObject.GetComponent<SharedObject>().CmdMoveObject(hitPoint + offset);
             }
         }
 
@@ -32,7 +33,7 @@ public class DragAndDropController : MonoBehaviour
             hitObject = hit.collider.gameObject;
             // print("hit " + hitObject.name);
             if (receiver.ButtonA() && hitObject.tag == "Interactable" && draggingObject == null) {
-                draggingObject = hitObject.GetComponent<SharedObject>(); 
+                draggingObject = hitObject;
                 dragPlane = new Plane(-transform.forward, hit.point);
                 offset = draggingObject.transform.position - hit.point;
             }

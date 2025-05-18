@@ -61,6 +61,8 @@ public class WiimoteReceiver : MonoBehaviour
     private bool cooldownA = false;
     private bool isPressedB = false;
     private bool cooldownB = false;
+    private bool isPressedHome = false;
+    private bool cooldownHome = false;
 
 
     public static WiimoteReceiver instance;
@@ -178,6 +180,11 @@ public class WiimoteReceiver : MonoBehaviour
         return (buttons & 1024) != 0;
     }
 
+    public bool ButtonHome()
+    {
+        return (buttons & 32768) != 0;
+    }
+
     public bool ButtonAClick()
     {
         if (ButtonA())
@@ -216,6 +223,25 @@ public class WiimoteReceiver : MonoBehaviour
         return false;
     }
 
+    public bool ButtonHomeClick()
+    {
+        if (ButtonHome())
+        {
+            if (!cooldownHome && !isPressedHome)
+            {
+                cooldownHome = true;
+                isPressedHome = true;
+                StartCoroutine(ResetIsPressedHome());
+                return true;
+            }
+        }
+        else
+        {
+            isPressedHome = false;
+        }
+        return false;
+    }
+
     IEnumerator ResetIsPressedA()
     {
         yield return new WaitForSeconds(0.5f);
@@ -226,6 +252,12 @@ public class WiimoteReceiver : MonoBehaviour
     {
         yield return new WaitForSeconds(0.5f);
         cooldownB = false;
+    }
+
+    IEnumerator ResetIsPressedHome()
+    {
+        yield return new WaitForSeconds(0.5f);
+        cooldownHome = false;
     }
 }
 

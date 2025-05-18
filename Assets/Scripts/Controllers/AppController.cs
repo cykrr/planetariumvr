@@ -1,3 +1,4 @@
+using Mirror;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,6 +12,7 @@ public class AppController : MonoBehaviour
     public Vector3 currentCameraRotation { get; set; }
 
     public CuerpoCeleste cuerpoActual { set; get; }
+
 
     private void Awake()
     {

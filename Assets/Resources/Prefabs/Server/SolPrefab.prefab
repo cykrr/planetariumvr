@@ -14,11 +14,10 @@ GameObject:
   - component: {fileID: 3035304073009322251}
   - component: {fileID: 4304652951653889919}
   - component: {fileID: 2766469983990689805}
-  - component: {fileID: 6340169881774234149}
   - component: {fileID: 8603880343012164271}
   - component: {fileID: 2165899633067387499}
   m_Layer: 3
-  m_Name: CuerpoCelesteShared
+  m_Name: SolPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -153,18 +152,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &6340169881774234149
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5897770511293272741}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b4aafad4d36f784dbb7905cf79e4d13, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &8603880343012164271
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -178,7 +165,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneId: 0
-  _assetId: 2585402216
+  _assetId: 2788599196
   serverOnly: 0
   visibility: 0
   hasSpawned: 0
@@ -198,4 +185,6 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0
   position: {x: 0, y: 0, z: 0}
+  scale: {x: 0, y: 0, z: 0}
   materialName: 
+  tagName: 

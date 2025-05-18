@@ -29,7 +29,7 @@ public class ConnectionManager : MonoBehaviour
             return;
         }
 
-        manager.networkAddress = serverAddress;
+        manager.networkAddress = PlayerPrefs.GetString("hostIp");
         Debug.Log("Iniciando como host (servidor + cliente local)...");
         manager.StartHost();
 
@@ -47,7 +47,7 @@ public class ConnectionManager : MonoBehaviour
             return;
         }
 
-        manager.networkAddress = serverAddress;
+        manager.networkAddress = PlayerPrefs.GetString("hostIp");
         Debug.Log($"Conectando al servidor en {serverAddress}...");
         manager.StartClient();
 

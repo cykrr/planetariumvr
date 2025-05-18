@@ -3,7 +3,8 @@ using UnityEngine;
 
 public class DragAndDropSceneController : NetworkBehaviour
 {
-    public GameObject cuerpoCelestePrefab;
+    public GameObject planetaPrefab;
+    public GameObject solPrefab;
 
     private Vector3 posicionSol = new Vector3(2, 0, 5);
     private Vector3 posicionPlanetas = new Vector3(-3, 2, 5);
@@ -42,7 +43,7 @@ public class DragAndDropSceneController : NetworkBehaviour
         */
 
 
-        GameObject sol = Instantiate(cuerpoCelestePrefab);
+        GameObject sol = Instantiate(solPrefab);
         sol.name = "Modelo Sol";
         sol.GetComponent<SharedObject>().position = posicionSol;
         NetworkServer.Spawn(sol);
@@ -53,11 +54,9 @@ public class DragAndDropSceneController : NetworkBehaviour
 
         for (int i = 0; i < planetas.Length; i++)
         {
-            GameObject planeta = Instantiate(cuerpoCelestePrefab);
+            GameObject planeta = Instantiate(planetaPrefab);
 
-            planeta.AddComponent<PlanetOrbit>();
             PlanetOrbit orbit = planeta.GetComponent<PlanetOrbit>();
-            orbit.sun = sol.transform;
             orbit.a += i*0.1f;
             orbit.b += i*0.1f;
 
