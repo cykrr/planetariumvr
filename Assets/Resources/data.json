@@ -13,7 +13,8 @@
         },
         "tipoEstrella": "Enana amarilla",
         "temperaturaNucleo": "15.000.000 °C",
-        "temperaturaSuperficial": "5.505 °C"
+        "temperaturaSuperficial": "5.505 °C",
+        "size": 2
     },
     "planetas": [
         {
@@ -31,7 +32,8 @@
             "periodoRotacion": "58,6 días",
             "temperaturaMedia": "167 °C",
             "tipoPlaneta": "Rocoso",
-            "cantidadLunas": 0
+            "cantidadLunas": 0,
+            "size": 0.5
         },
         {
             "nombre": "Venus",
@@ -48,7 +50,8 @@
             "periodoRotacion": "243 días",
             "temperaturaMedia": "464 °C",
             "tipoPlaneta": "Rocoso",
-            "cantidadLunas": 0
+            "cantidadLunas": 0,
+            "size": 0.552
         },
         {
             "nombre": "Tierra",
@@ -65,7 +68,8 @@
             "periodoRotacion": "24 horas",
             "temperaturaMedia": "15 °C",
             "tipoPlaneta": "Rocoso",
-            "cantidadLunas": 1
+            "cantidadLunas": 1,
+            "size": 0.556
         },
         {
             "nombre": "Marte",
@@ -82,7 +86,8 @@
             "periodoRotacion": "24.6 horas",
             "temperaturaMedia": "-65 °C",
             "tipoPlaneta": "Rocoso",
-            "cantidadLunas": 2
+            "cantidadLunas": 2,
+            "size": 0.513
         },
         {
             "nombre": "Júpiter",
@@ -98,7 +103,8 @@
             "periodoRotacion": "9.9 horas",
             "temperaturaMedia": "-110 °C",
             "tipoPlaneta": "Gaseoso",
-            "cantidadLunas": 95
+            "cantidadLunas": 95,
+            "size": 1.5
         },
         {
             "nombre": "Saturno",
@@ -114,7 +120,8 @@
             "periodoRotacion": "10.7 horas",
             "temperaturaMedia": "-140 °C",
             "tipoPlaneta": "Gaseoso",
-            "cantidadLunas": 146
+            "cantidadLunas": 146,
+            "size": 1.337
         },
         {
             "nombre": "Urano",
@@ -130,7 +137,8 @@
             "periodoRotacion": "17.2 horas",
             "temperaturaMedia": "-195 °C",
             "tipoPlaneta": "Gaseoso",
-            "cantidadLunas": 28
+            "cantidadLunas": 28,
+            "size": 0.835
         },
         {
             "nombre": "Neptuno",
@@ -146,7 +154,8 @@
             "periodoRotacion": "16.1 horas",
             "temperaturaMedia": "-200 °C",
             "tipoPlaneta": "Gaseoso",
-            "cantidadLunas": 16
+            "cantidadLunas": 16,
+            "size": 0.824
         }
     ]
 }
