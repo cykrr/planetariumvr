@@ -59,10 +59,15 @@ public class WiimoteReceiver : MonoBehaviour
 
     private bool isPressedA = false;
     private bool cooldownA = false;
+
     private bool isPressedB = false;
     private bool cooldownB = false;
+
     private bool isPressedHome = false;
     private bool cooldownHome = false;
+
+    private bool isPressedPlus = false;
+    private bool cooldownPlus = false;
 
 
     public static WiimoteReceiver instance;
@@ -90,6 +95,10 @@ public class WiimoteReceiver : MonoBehaviour
 
     void Update()
     {
+        if (ButtonPlusClick())
+        {
+            frameCount = 0;
+        }
         if (frameCount < calibrationFrameLimit)
         {
             CalibrateSensor();
@@ -98,30 +107,30 @@ public class WiimoteReceiver : MonoBehaviour
         else
         {
             Vector3 w = _gyro - gyroOffset;
-            w *= 595/8192f;
+            w *= 595 / 8192f;
             // w.x -= 5.5f;
             // w.y -= 5.5f;
             // w.z -= 5.5f;
 
-            accel.x = (_accel.x -X0.x) / 26f; //min + max /2
+            accel.x = (_accel.x - X0.x) / 26f; //min + max /2
             // accel.x = (_accel.x - X0.x)/(X3.x - X0.x);
             // accel.y = _accel.y; 
-            accel.y = (_accel.y - X0.y)/27f;
-            accel.z = (_accel.z - X0.z)/27f + 1;//(_accel.z - X0.z)/(X1.z - X0.z);
+            accel.y = (_accel.y - X0.y) / 27f;
+            accel.z = (_accel.z - X0.z) / 27f + 1;//(_accel.z - X0.z)/(X1.z - X0.z);
             accel = accel.normalized;
 
             _accelFiltered = accel;//0.95f * _accelFiltered + 0.05f * accel;
 
-            pitchRoll.x = Mathf.Atan2(_accelFiltered.y, Mathf.Sqrt(_accelFiltered.x*_accelFiltered.x + _accelFiltered.z*_accelFiltered.z) + 0.001f)*Mathf.Rad2Deg; // pitch
-            pitchRoll.y = Mathf.Atan2(-_accelFiltered.x, _accelFiltered.z+ 0.0001f) * Mathf.Rad2Deg; // roll
+            pitchRoll.x = Mathf.Atan2(_accelFiltered.y, Mathf.Sqrt(_accelFiltered.x * _accelFiltered.x + _accelFiltered.z * _accelFiltered.z) + 0.001f) * Mathf.Rad2Deg; // pitch
+            pitchRoll.y = Mathf.Atan2(-_accelFiltered.x, _accelFiltered.z + 0.0001f) * Mathf.Rad2Deg; // roll
             // 1. Integrate gyro (Euler angles in deg)
 
             // 2. Complementary filter
             // Yaw no correction available!
             float alpha = 0.98f;
-            rotation.x = alpha * (rotation.x + w.x  * Time.deltaTime) + (1 - alpha) * pitchRoll.x;
+            rotation.x = alpha * (rotation.x + w.x * Time.deltaTime) + (1 - alpha) * pitchRoll.x;
             rotation.z = alpha * (rotation.z + w.y * Time.deltaTime) + (1 - alpha) * pitchRoll.y;
-            rotation.y -= w.z * 0.7f*  Time.deltaTime; // Yaw uncorrecte
+            rotation.y -= w.z * 0.7f * Time.deltaTime; // Yaw uncorrecte
             // Pitch and roll corrections
             // rotation.y = pitch;
             // rotation.z = roll;
@@ -171,12 +180,14 @@ public class WiimoteReceiver : MonoBehaviour
         }
     }
 
-    public bool ButtonA() {
+    public bool ButtonA()
+    {
         return (buttons & 2048) != 0;
     }
 
 
-    public bool ButtonB() {
+    public bool ButtonB()
+    {
         return (buttons & 1024) != 0;
     }
 
@@ -184,6 +195,13 @@ public class WiimoteReceiver : MonoBehaviour
     {
         return (buttons & 32768) != 0;
     }
+
+    public bool ButtonPlus()
+    {
+        print(buttons & 16);
+        return (buttons & 16) != 0;
+    }
+
 
     public bool ButtonAClick()
     {
@@ -196,7 +214,7 @@ public class WiimoteReceiver : MonoBehaviour
                 StartCoroutine(ResetIsPressedA());
                 return true;
             }
-        } 
+        }
         else
         {
             isPressedA = false;
@@ -242,6 +260,25 @@ public class WiimoteReceiver : MonoBehaviour
         return false;
     }
 
+    public bool ButtonPlusClick()
+    {
+        if (ButtonPlus())
+        {
+            if (!cooldownPlus && !isPressedPlus)
+            {
+                cooldownPlus = true;
+                isPressedPlus = true;
+                StartCoroutine(ResetIsPressedPlus());
+                return true;
+            }
+        }
+        else
+        {
+            isPressedPlus = false;
+        }
+        return false;
+    }
+
     IEnumerator ResetIsPressedA()
     {
         yield return new WaitForSeconds(0.5f);
@@ -259,5 +296,12 @@ public class WiimoteReceiver : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         cooldownHome = false;
     }
+
+    IEnumerator ResetIsPressedPlus()
+    {
+        yield return new WaitForSeconds(0.5f);
+        cooldownPlus = false;
+    }
+
 }
 

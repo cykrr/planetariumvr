@@ -73,7 +73,7 @@ public class DragAndDropSceneController : NetworkBehaviour
             GameObject planeta = Instantiate(planetaPrefab);
 
             PlanetOrbit orbit = planeta.GetComponent<PlanetOrbit>();
-            orbit.a = i  + sunOffset ;  // semi-major axis
+            orbit.a = i * 1.5f  + sunOffset ;  // semi-major axis
             orbit.b = i  + sunOffset ; // semi-minor axis
 
 
