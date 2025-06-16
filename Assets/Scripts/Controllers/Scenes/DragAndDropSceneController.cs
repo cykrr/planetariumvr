@@ -4,10 +4,24 @@ using UnityEngine;
 public class DragAndDropSceneController : NetworkBehaviour
 {
     public GameObject planetaPrefab;
+    public GameObject orbitPathPrefab;
     public GameObject solPrefab;
 
-    private Vector3 posicionSol = new Vector3(2, 0, 5);
+    private Vector3 posicionSol = new Vector3(3, -1, 5);
     private Vector3 posicionPlanetas = new Vector3(-3, 2, 5);
+
+    // float scaleFactor = 0.0173f; // 1 million km ≈ 0.0173 Unity units
+
+    // float[] distances = {
+    // 57.9f, 108.2f, 149.6f, 227.9f,
+    // 778.5f, 1433.5f, 2872.5f, 4495.1f
+    // };
+    //
+    // float scaleFactor = 10f; // o prueba con 20f, 50f, etc.
+    // float[] scaledDistances = distances.Select(d => d / scaleFactor).ToArray();
+    public float sunOffset = 2f;
+
+    float sunSize = 2.0f;
 
     private string[] planetas = new string[] {
         "Mercurio",
@@ -45,6 +59,8 @@ public class DragAndDropSceneController : NetworkBehaviour
 
         GameObject sol = Instantiate(solPrefab);
         sol.name = "Modelo Sol";
+        sol.transform.localScale = new Vector3(sunSize, sunSize, sunSize);
+        // sol.transform.localScale = new Vector3(sunSize, sunSize, sunSize);
         sol.GetComponent<SharedObject>().position = posicionSol;
         NetworkServer.Spawn(sol);
 
@@ -57,10 +73,12 @@ public class DragAndDropSceneController : NetworkBehaviour
             GameObject planeta = Instantiate(planetaPrefab);
 
             PlanetOrbit orbit = planeta.GetComponent<PlanetOrbit>();
-            orbit.a += i*0.1f;
-            orbit.b += i*0.1f;
+            orbit.a = i  + sunOffset ;  // semi-major axis
+            orbit.b = i  + sunOffset ; // semi-minor axis
+
 
             planeta.name = planetas[i];
+            // planeta.transform.localScale = new Vector3(planetSizes[i], planetSizes[i], planetSizes[i]);
             // planeta.transform.SetParent(grupoPlanetas.transform);
 
             // Position in hex pattern

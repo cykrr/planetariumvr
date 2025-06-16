@@ -201,8 +201,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6379036eb72adea40b3acd4cc29d1fe7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sun: {fileID: 0}
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
   isOrbiting: 0
+  orbitPathPrefab: {fileID: 1149685755874350302, guid: cc8a0560cad2045419b71d1e03c67825, type: 3}
   a: 5
   b: 3
   orbitSpeed: 0.5

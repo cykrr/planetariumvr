@@ -22,7 +22,7 @@ public class DragAndDropController : MonoBehaviour
         ray = rayPointer.ray;
 
         if (draggingObject != null && !(draggingObject.GetComponent<PlanetOrbit>().isOrbiting) && receiver.ButtonA()) {
-            print(draggingObject.GetComponent<PlanetOrbit>().isOrbiting);
+            // print(draggingObject.GetComponent<PlanetOrbit>().isOrbiting);
             if (dragPlane.Raycast(ray, out float enter)) {
                 Vector3 hitPoint = ray.GetPoint(enter);
                 draggingObject.GetComponent<SharedObject>().CmdMoveObject(hitPoint + offset);
