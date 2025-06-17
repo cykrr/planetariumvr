@@ -58,16 +58,22 @@ public class PlanetOrbit : NetworkBehaviour
         {
             Transform sun = collision.gameObject.transform;
 
-            GameObject orbitPath = Instantiate(orbitPathPrefab);
-            orbitPath.name = "OrbitPath_" + sharedObject.gameObject.name;
-            OrbitDrawer drawer = orbitPath.GetComponent<OrbitDrawer>();
-            drawer.center = sun;
+            if (isServer)
+            {
+                GameObject orbitPath = Instantiate(orbitPathPrefab);
+                orbitPath.name = "OrbitPath_" + sharedObject.gameObject.name;
+                OrbitDrawer drawer = orbitPath.GetComponent<OrbitDrawer>();
+                drawer.center = sun;
 
-            initialOffset = new Vector3(a, 0, 0); // Example: start at perihelion
-            transform.position = sun.position + initialOffset;
-            drawer.a = a;
-            drawer.b = b;
-            drawer.segments = 100; // Adjust as needed for smoothness
+                initialOffset = new Vector3(a, 0, 0); // Example: start at perihelion
+                transform.position = sun.position + initialOffset;
+                drawer.a = a;
+                drawer.b = b;
+                drawer.segments = 100; // Adjust as needed for smoothness
+
+                NetworkServer.Spawn(orbitPath);
+            }
+
             int index = planetIndex.Contains(transform.gameObject.name) ? 
                 System.Array.IndexOf(planetIndex, transform.gameObject.name) : 0;
 

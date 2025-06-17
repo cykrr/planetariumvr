@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5998960741139169396}
   - component: {fileID: 3912219172308585967}
   - component: {fileID: 6287713885729031691}
+  - component: {fileID: 1220034363354492285}
   m_Layer: 0
   m_Name: OrbitPath
   m_TagString: Untagged
@@ -152,6 +153,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6cbadaecdc1abe478ca6b75ab64fa4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
   center: {fileID: 0}
-  radius: 5
+  a: 1
+  b: 1
   segments: 100
+--- !u!114 &1220034363354492285
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1149685755874350302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneId: 0
+  _assetId: 4089167528
+  serverOnly: 0
+  visibility: 0
+  hasSpawned: 0

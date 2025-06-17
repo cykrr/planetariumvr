@@ -41,19 +41,26 @@
 //     }
 // }
 //
+using Mirror;
 using System;
 using UnityEngine;
 
 [RequireComponent(typeof(LineRenderer))]
-public class OrbitDrawer : MonoBehaviour
+public class OrbitDrawer : NetworkBehaviour
 {
+    [SyncVar]
     public Transform center;
+
+    [SyncVar]
     public float a = 1f;
+    [SyncVar]
     public float b = 1f;
+
     public int segments = 100;
 
     private LineRenderer lineRenderer;
     Color c1 = Color.gray;
+
 
     [System.Obsolete]
     private void Awake()

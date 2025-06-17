@@ -97,6 +97,7 @@ public class WiimoteReceiver : MonoBehaviour
     {
         if (ButtonPlusClick())
         {
+            gyroOffset = Vector3.zero;
             frameCount = 0;
         }
         if (frameCount < calibrationFrameLimit)
